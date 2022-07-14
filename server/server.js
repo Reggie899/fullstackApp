@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import testRouter from './routes/testRouter.js';
+import userRouter from './routes/userRouter.js';
 import mongoose from 'mongoose';
 import { connectSync, connectDB } from './helpers/dbConnect.js';
 
@@ -17,6 +18,7 @@ server.use(cors());
 server.use(express.json()); 
 
 server.use('/test', testRouter);
+server.use('/user', userRouter);
 
 
 connectDB();
@@ -28,6 +30,6 @@ console.log("Connection to MongoDB has failed ", error.message);
     
 });
 
-const PORT = process.env.PORT || 8077;
+const PORT = process.env.PORT;
 
 server.listen(PORT, () => console.log(`Server is listening to port ${PORT} and running`));
