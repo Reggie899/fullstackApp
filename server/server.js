@@ -3,7 +3,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import testRouter from './routes/testRouter.js';
 import userRouter from './routes/userRouter.js';
-import postMessageRouter from './routes/postMessageRouter.js'
+import postMessageRouter from './routes/postMessageRouter.js';
+import postStory from'./routes/storyRouter.js';
 import mongoose from 'mongoose';
 import { connectSync, connectDB } from './helpers/dbConnect.js';
 
@@ -21,6 +22,8 @@ server.use(express.json());
 server.use('/test', testRouter);
 server.use('/user', userRouter);
 server.use('/post', postMessageRouter);
+server.use('/story', postStory);
+
 
 
 

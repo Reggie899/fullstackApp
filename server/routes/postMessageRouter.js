@@ -1,15 +1,16 @@
 import {Router} from 'express';
 
 import auth from '../middlewares/auth.js'
-import {getPosts, addPost, editPost,removePost, findPost } from '../controllers/postMessagesController.js';
+import {getPosts, addPost, editPost,removePost, findPost, likePost } from '../controllers/postMessagesController.js';
 
 const router = Router();
 
 router.get('/getposts', auth, getPosts);
-router.post('/getposts', auth, addPost);
+router.post('/addposts', auth, addPost);
 router.get('/findpost/:postNo', auth, findPost);
-router.put('/getposts', auth, editPost);
-router.delete('/getposts', auth, removePost);
+router.put('/editpost/:id', auth, editPost);
+router.delete('/removepost/:id', auth, removePost);
+router.put('/likepost/:id', auth, likePost);
 
 
 export default router;
