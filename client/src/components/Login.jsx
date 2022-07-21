@@ -1,10 +1,17 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import axios from "axios";
+ 
 
 // Fetchers
 import { loginUser } from "../api/index.js"
+import { useNavigate } from 'react-router';
 
 const Login = () => {
-    const [values, setValues] = useState({  email: "", password: "" })
+    const [values, setValues] = useState({  email: "", password: "" });
+    const navigate = useNavigate();
+
+
+
     const [success, setSuccess] = useState(false)
 
 
@@ -17,9 +24,20 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        loginUser(values).then(()=>setSuccess(true))
-
-    }
+        // loginUser(values).then(()=>setSuccess(true))
+        axios.post(`${process.env.REACT_APP_BASE_URL}/user/login`, values)
+        .then(response => {
+            // console.log(response);
+        return response // needed return 
+        })
+        .then(response => {
+            if(response.statusText === "OK") { 
+            localStorage.setItem("accessToken", response.data.token); navigate("/home"); return response
+        }})
+        .then (response => {console.log(response); return response})
+        .then(response => console.log(response.data.token))
+        .catch(err => console.log(err))
+          };
 
     return (
         <>

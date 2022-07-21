@@ -96,3 +96,19 @@ export const list =  async (req, res) => {
     const users = await User.find();
     res.json(users);
 }
+
+
+
+export const validateUser = async (req, res) => {
+  // console.log(req.user);
+const username = req.user.username
+  // res.json({username: req.user.username})}
+  try {
+    const searchUser = await User.findOne({username: username})
+    if(searchUser == null) return res.json({message: "invalid credentials"})
+    res.json({user: searchUser})
+  }
+  catch (err)  {
+    if(err) res.json({message: err.message})
+  }
+  }

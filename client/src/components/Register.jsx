@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 // Fetchers
 import { registerUser } from "../api/index.js";
@@ -22,7 +23,10 @@ const Registration = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    registerUser(values).then(() => setSuccess(true));
+    // registerUser(values).then(() => setSuccess(true));
+axios.post(`${process.env.REACT_APP_BASE_URL}/user/register`, values)
+.then(response => console.log(response))
+.catch(err => console.log(err))
   };
 
   return (

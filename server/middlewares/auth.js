@@ -6,6 +6,7 @@ dotenv.config();
 
 const authenticateToken = (req, res, next) => {
     // FIRST GET THE TOKEN 
+    // console.log = 
     const authHeader = req.headers['authorization']; // 'Barear fbashjvsdjzfvwue'
     const token = authHeader && authHeader.split(' ')[1]; //['Barear', 'sdkfbsfsi'];
 
