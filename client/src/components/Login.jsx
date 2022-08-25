@@ -32,7 +32,8 @@ const Login = () => {
         })
         .then(response => {
             if(response.statusText === "OK") { 
-            localStorage.setItem("accessToken", response.data.token); navigate("/home"); return response
+            localStorage.setItem("accessToken", response.data.token); navigate("/home"); 
+            return response
         }})
         .then (response => {console.log(response); return response})
         .then(response => console.log(response.data.token))
