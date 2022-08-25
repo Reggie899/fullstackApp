@@ -69,7 +69,7 @@ export const editStory = async (req, res) => {
       res.status(400).json({ message: err.message });
     }
   };
-
+//hhh
   export const likeStory = async (req, res) => {
     const { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id))
